@@ -7,15 +7,21 @@
 
 import UIKit
 
+protocol ButtonCell {
+    func confirmationButton(index: Int)
+    func delete(index: Int)
+}
+
 class ImpianViewCell: UITableViewCell {
     
+    var delegate: ButtonCell?
+    
+    var indexData: Int?
+    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var progress: UIProgressView!
-    
     @IBOutlet weak var priceLabel: UILabel!
-    
-    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var buttonDetail: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +32,14 @@ class ImpianViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func buttonDelete(_ sender: Any) {
+        self.delegate?.delete(index: indexData ?? 0)
+    }
+    
+    @IBAction func buttonDetail(_ sender: Any) {
+        self.delegate?.confirmationButton(index: indexData ?? 0)
     }
     
 }

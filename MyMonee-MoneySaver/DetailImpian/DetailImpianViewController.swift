@@ -81,8 +81,18 @@ class DetailImpianViewController: UIViewController {
     
     @IBAction func confirmationButton(_ sender: Any) {
         impianData.remove(at: indexData!)
-        usageHistory.append(UsageHistory(usageName: titleImpian.text!, usageDate: getCurrentDate(), price: Int(textPrice.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression))!, status: true))
+        usageHistory.append(UsageHistory(usageName: titleImpian.text!, usageDate: currentDate(), price: Int(textPrice.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression))!, status: true))
         
         goBackToMainTabBar()
+    }
+}
+
+extension DetailImpianViewController: ConvertDate {
+    func currentDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy - HH.mm"
+        let result = formatter.string(from: date)
+        return result
     }
 }

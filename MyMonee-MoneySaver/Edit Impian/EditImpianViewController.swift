@@ -46,6 +46,7 @@ class EditImpianViewController: UIViewController {
     
     fileprivate func updateData(){
         impianData[indexData!] = ImpianData(impianName: titleEditImpian.text!, impianProgress: Float(calculationProgress()), impianPrice: "IDR \(convertIntToFormatMoneyRaw(money: Int(getBalance())) ) / IDR \(convertIntToFormatMoneyRaw(money: Int(moneyToDecimal(money: targetPriceEditImpian.text!))))", impianPriceTarget: Int(targetPriceEditImpian.text!)!)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(impianData), forKey: "savedArrayImpian")
     }
     
     private func calculationProgress() -> Double {
@@ -71,6 +72,7 @@ class EditImpianViewController: UIViewController {
     
     @IBAction func deleteImpianButton(_ sender: Any) {
         impianData.remove(at: indexData!)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(impianData), forKey: "savedArrayImpian")
         goBackToMainTabBar()
     }
     

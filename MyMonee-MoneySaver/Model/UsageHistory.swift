@@ -12,7 +12,7 @@ enum TypeHistory: String {
     case withdraw
 }
 
-struct UsageHistory {
+struct UsageHistory: Encodable, Decodable {
     var id: String
     var usageName: String
     var usageDate: String
@@ -28,7 +28,34 @@ struct UsageHistory {
     }
 }
 
+extension UsageHistory {
+    func formatRupiah() -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "Id_ID")
+        formatter.groupingSeparator = "."
+        formatter.numberStyle = .decimal
+        var result: String = ""
+        
+        if let formatterTipAmount = formatter.string(from: self.price as NSNumber) {
+            result = "Rp \(formatterTipAmount)"
+        }
+        return result
+    }
+    
+    func formatDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy - HH.mm"
+        let result = formatter.string(from: date)
+        return result
+    }
+}
+
 var usageHistory: [UsageHistory] = [
 //    UsageHistory(usageName: "Bayar Listrik", usageDate: "1 Mei 2021 - 19.30", price: 256000, status: true),
 //    UsageHistory(usageName: "Gaji Febuari", usageDate: "1 Mei 2021 - 19.30", price: 1250000, status: false)
 ]
+
+
+
+

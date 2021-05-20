@@ -79,7 +79,9 @@ class AddHomeViewController: UIViewController {
     }
     
     fileprivate func insertUsageHistory(type: TypeHistory){
-        usageHistory.append(UsageHistory(usageName: titleLabel.text!, usageDate: getCurrentDate(), price: Int(priceLabel.text!)!, status: statusInsert))
+        usageHistory.append(UsageHistory(usageName: titleLabel.text!, usageDate: currentDate(), price: Int(priceLabel.text!)!, status: statusInsert))
+        
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(usageHistory), forKey: "savedArray")
     }
         
     override func viewDidLoad() {
@@ -88,7 +90,7 @@ class AddHomeViewController: UIViewController {
         
         shadowView(uiView: pemasukanView)
         shadowView(uiView: pengeluaranView)
-
+        
     }
     
     private func shadowView(uiView: UIView){
@@ -117,5 +119,15 @@ class AddHomeViewController: UIViewController {
         }
         goBackToMainTabBar()
     }
-    
+}
+
+
+extension AddHomeViewController: ConvertDate {
+    func currentDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy - HH.mm"
+        let result = formatter.string(from: date)
+        return result
+    }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImpianData {
+struct ImpianData: Encodable, Decodable  {
     var id: String
     var impianName: String
     var impianProgress: Float

@@ -16,7 +16,7 @@ class AddImpianViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
     }
     
     fileprivate func goBackToMainTabBar(){
@@ -44,10 +44,8 @@ class AddImpianViewController: UIViewController {
     }
     
     func insertImpian() {
-//        usageHistory.append(UsageHistory(id: "MF - 32141", usageName: titleLabel.text!, usageDate: getCurrentDate(), price: priceLabel.text!, status: statusInsert))
-        
-        
         impianData.append(ImpianData(impianName: titleImpian.text!, impianProgress: Float(calculationProgress()), impianPrice: "IDR \(convertIntToFormatMoneyRaw(money: Int(getBalance()))) / IDR \(convertIntToFormatMoneyRaw(money: Int(moneyToDecimal(money: targetImpian.text!))))", impianPriceTarget: Int(targetImpian.text!)!))
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(impianData), forKey: "savedArrayImpian")
     }
     
     private func calculationProgress() -> Double {

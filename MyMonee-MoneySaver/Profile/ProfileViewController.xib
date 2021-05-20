@@ -55,7 +55,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bagus! Pengeluaranmu lebih sedikit dari Pemasukan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBL-aO-suq">
-                            <rect key="frame" x="92" y="227" width="230" height="49"/>
+                            <rect key="frame" x="92.5" y="227" width="230" height="49"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="H3I-8h-MA4"/>
                                 <constraint firstAttribute="width" constant="230" id="yce-g0-xwt"/>

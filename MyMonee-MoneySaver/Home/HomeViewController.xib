@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,7 +22,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MyMonee_MoneySaver" customModuleProvider="target">
             <connections>
-                <outlet property="emptyDataViewHome" destination="pUg-xI-twP" id="TQC-cy-62r"/>
+                <outlet property="emptyDataViewComponent" destination="xL4-5K-Feo" id="VrW-M1-a8Q"/>
                 <outlet property="greeting" destination="tq2-tZ-pMT" id="nYx-me-0GQ"/>
                 <outlet property="labelBalance" destination="SPS-9p-3zd" id="Hwq-kx-1xw"/>
                 <outlet property="labelName" destination="jtt-KP-HZf" id="aqk-pw-qYd"/>
@@ -189,26 +190,9 @@
                                 <constraint firstAttribute="height" constant="425.5" id="pi8-7b-j7k"/>
                             </constraints>
                         </tableView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUg-xI-twP">
-                            <rect key="frame" x="0.0" y="94" width="414" height="201"/>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xL4-5K-Feo" customClass="EmptyDataHome" customModule="MyMonee_MoneySaver" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="57" width="414" height="221"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data kamu kosong, Yuk mulai buat Catatan kamu!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yny-M6-4cU">
-                                    <rect key="frame" x="81" y="40" width="253" height="74"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovW-QJ-EK2">
-                                    <rect key="frame" x="90" y="132" width="234" height="43"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button" image="create_penggunaan"/>
-                                    <connections>
-                                        <action selector="addUsageDataButton:" destination="-1" eventType="touchUpInside" id="zof-9T-b84"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                     </subviews>
@@ -257,7 +241,6 @@
     <resources>
         <image name="arrow_down" width="16" height="16"/>
         <image name="arrow_up" width="16" height="16"/>
-        <image name="create_penggunaan" width="231" height="43"/>
         <image name="plus_button" width="36" height="36"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

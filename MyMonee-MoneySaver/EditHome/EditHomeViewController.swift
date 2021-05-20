@@ -87,7 +87,7 @@ class EditHomeViewController: UIViewController {
     }
     
     fileprivate func goBackToMainTabBar(){
-        let viewController = MainTabController(nibName: String(describing: MainTabController.self), bundle: nil)
+        let viewController = HomeViewController(nibName: String(describing: HomeViewController.self), bundle: nil)
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .flipHorizontal
         navigationController?.pushViewController(viewController, animated: true)
@@ -101,7 +101,8 @@ class EditHomeViewController: UIViewController {
     }
     
     fileprivate func updateData(type: TypeHistory){
-        usageHistory[indexData!] = UsageHistory(usageName: titleTextField.text!, usageDate: getCurrentDate(), price: Int(priceTextField.text!)!, status: statusInsert)
+        usageHistory[indexData!] = UsageHistory(usageName: titleTextField.text!, usageDate: currentDate(), price: Int(priceTextField.text!)!, status: statusInsert)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(usageHistory), forKey: "savedArray")
     }
     
     private func shadowView(uiView: UIView){
@@ -111,10 +112,19 @@ class EditHomeViewController: UIViewController {
         uiView.layer.shadowColor = UIColor.darkGray.cgColor
     }
     
-    
     @IBAction func deleteButton(_ sender: UIButton) {
         usageHistory.remove(at: indexData!)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(usageHistory), forKey: "savedArray")
         goBackToMainTabBar()
     }
-    
+}
+
+extension EditHomeViewController: ConvertDate {
+    func currentDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy - HH.mm"
+        let result = formatter.string(from: date)
+        return result
+    }
 }

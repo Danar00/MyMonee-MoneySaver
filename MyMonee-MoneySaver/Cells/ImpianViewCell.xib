@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,41 +26,58 @@
                         <rect key="frame" x="0.0" y="3" width="312" height="74"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Membeli Mobil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzi-3Z-bi4">
-                                <rect key="frame" x="10" y="11" width="252" height="20"/>
+                                <rect key="frame" x="10" y="11" width="161.5" height="20"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6ft-0Q-PiK">
-                                <rect key="frame" x="10" y="35" width="252" height="4"/>
+                                <rect key="frame" x="10" y="35" width="161.5" height="4"/>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IDR 999.000 / IDR 200.000.000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GC-ha-WN6">
-                                <rect key="frame" x="10" y="46" width="252" height="16"/>
+                                <rect key="frame" x="10" y="46" width="161.5" height="16"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
                                 <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vector" translatesAutoresizingMaskIntoConstraints="NO" id="aa0-mg-HTa">
-                                <rect key="frame" x="289" y="28" width="10" height="18"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSz-Yv-pRA">
+                                <rect key="frame" x="214" y="21" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="6i6-qL-7Mu"/>
-                                    <constraint firstAttribute="width" constant="10" id="uIO-pb-HYl"/>
+                                    <constraint firstAttribute="height" constant="32" id="714-fQ-99f"/>
+                                    <constraint firstAttribute="width" constant="32" id="kwi-IO-6Dx"/>
                                 </constraints>
-                            </imageView>
+                                <state key="normal" image="ic_checklist_disable"/>
+                                <connections>
+                                    <action selector="buttonDetail:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="37h-I1-RhH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcS-Kf-Giq">
+                                <rect key="frame" x="263" y="21" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="DuH-Mz-Au2"/>
+                                    <constraint firstAttribute="height" constant="32" id="upt-iI-eOa"/>
+                                </constraints>
+                                <state key="normal" image="ic_delete"/>
+                                <connections>
+                                    <action selector="buttonDelete:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JyW-UW-Jk3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="aa0-mg-HTa" firstAttribute="centerY" secondItem="6ft-0Q-PiK" secondAttribute="centerY" id="4I2-Tc-VIZ"/>
                             <constraint firstItem="6ft-0Q-PiK" firstAttribute="leading" secondItem="xzi-3Z-bi4" secondAttribute="leading" id="5tD-4K-kWA"/>
                             <constraint firstAttribute="height" constant="74" id="862-0u-5dt"/>
                             <constraint firstItem="4GC-ha-WN6" firstAttribute="top" secondItem="6ft-0Q-PiK" secondAttribute="bottom" constant="7" id="BBS-oh-gR6"/>
-                            <constraint firstAttribute="trailing" secondItem="aa0-mg-HTa" secondAttribute="trailing" constant="13" id="LlQ-b2-xvl"/>
+                            <constraint firstItem="FSz-Yv-pRA" firstAttribute="centerY" secondItem="6ft-0Q-PiK" secondAttribute="centerY" id="Ce3-lt-xFf"/>
                             <constraint firstItem="4GC-ha-WN6" firstAttribute="trailing" secondItem="6ft-0Q-PiK" secondAttribute="trailing" id="WCc-2W-KQZ"/>
+                            <constraint firstItem="LcS-Kf-Giq" firstAttribute="centerY" secondItem="FSz-Yv-pRA" secondAttribute="centerY" id="WGb-Hy-nik"/>
                             <constraint firstItem="6ft-0Q-PiK" firstAttribute="trailing" secondItem="xzi-3Z-bi4" secondAttribute="trailing" id="amq-9e-k56"/>
-                            <constraint firstItem="aa0-mg-HTa" firstAttribute="leading" secondItem="6ft-0Q-PiK" secondAttribute="trailing" constant="27" id="bu7-W5-NtN"/>
                             <constraint firstItem="6ft-0Q-PiK" firstAttribute="top" secondItem="xzi-3Z-bi4" secondAttribute="bottom" constant="4" id="bx1-js-hjd"/>
+                            <constraint firstItem="FSz-Yv-pRA" firstAttribute="leading" secondItem="6ft-0Q-PiK" secondAttribute="trailing" constant="42.5" id="mcW-Ox-m2B"/>
                             <constraint firstItem="xzi-3Z-bi4" firstAttribute="top" secondItem="556-E2-l6k" secondAttribute="top" constant="11" id="qia-zK-6f0"/>
                             <constraint firstItem="4GC-ha-WN6" firstAttribute="leading" secondItem="6ft-0Q-PiK" secondAttribute="leading" id="v7w-FM-efL"/>
+                            <constraint firstItem="LcS-Kf-Giq" firstAttribute="leading" secondItem="FSz-Yv-pRA" secondAttribute="trailing" constant="17" id="vef-4a-DHR"/>
+                            <constraint firstAttribute="trailing" secondItem="LcS-Kf-Giq" secondAttribute="trailing" constant="17" id="vsf-kJ-7yk"/>
                             <constraint firstItem="xzi-3Z-bi4" firstAttribute="leading" secondItem="556-E2-l6k" secondAttribute="leading" constant="10" id="xST-89-x1T"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -80,7 +98,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="icon" destination="aa0-mg-HTa" id="3VJ-kG-ajh"/>
+                <outlet property="buttonDetail" destination="FSz-Yv-pRA" id="KjC-wJ-fQq"/>
                 <outlet property="priceLabel" destination="4GC-ha-WN6" id="0jp-o2-v4z"/>
                 <outlet property="progress" destination="6ft-0Q-PiK" id="Ig5-5r-U6P"/>
                 <outlet property="titleLabel" destination="xzi-3Z-bi4" id="sCc-WK-Q1I"/>
@@ -89,6 +107,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Vector" width="10" height="18"/>
+        <image name="ic_checklist_disable" width="32" height="32"/>
+        <image name="ic_delete" width="32" height="32"/>
     </resources>
 </document>

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA39E7B62654DD5A006A7602 /* EmptyDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39E7B52654DD5A006A7602 /* EmptyDataDelegate.swift */; };
+		FA39E7BD2654DE59006A7602 /* EmptyDataHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39E7BB2654DE59006A7602 /* EmptyDataHome.swift */; };
+		FA39E7BE2654DE59006A7602 /* EmptyDataHome.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA39E7BC2654DE59006A7602 /* EmptyDataHome.xib */; };
+		FA39E7C72654F01E006A7602 /* EmptyDataImpian.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39E7C52654F01E006A7602 /* EmptyDataImpian.swift */; };
+		FA39E7C82654F01E006A7602 /* EmptyDataImpian.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA39E7C62654F01E006A7602 /* EmptyDataImpian.xib */; };
+		FA39E7CD26553B69006A7602 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39E7CC26553B69006A7602 /* Format.swift */; };
 		FA561CB9264D3A0400CD04E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA561CB8264D3A0400CD04E3 /* AppDelegate.swift */; };
 		FA561CBB264D3A0400CD04E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA561CBA264D3A0400CD04E3 /* SceneDelegate.swift */; };
 		FA561CBD264D3A0400CD04E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA561CBC264D3A0400CD04E3 /* ViewController.swift */; };
@@ -83,6 +89,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA39E7B52654DD5A006A7602 /* EmptyDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataDelegate.swift; sourceTree = "<group>"; };
+		FA39E7BB2654DE59006A7602 /* EmptyDataHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataHome.swift; sourceTree = "<group>"; };
+		FA39E7BC2654DE59006A7602 /* EmptyDataHome.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyDataHome.xib; sourceTree = "<group>"; };
+		FA39E7C52654F01E006A7602 /* EmptyDataImpian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataImpian.swift; sourceTree = "<group>"; };
+		FA39E7C62654F01E006A7602 /* EmptyDataImpian.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyDataImpian.xib; sourceTree = "<group>"; };
+		FA39E7CC26553B69006A7602 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 		FA561CB5264D3A0400CD04E3 /* MyMonee-MoneySaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyMonee-MoneySaver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA561CB8264D3A0400CD04E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA561CBA264D3A0400CD04E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +184,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA39E7BA2654DDFF006A7602 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				FA39E7BB2654DE59006A7602 /* EmptyDataHome.swift */,
+				FA39E7BC2654DE59006A7602 /* EmptyDataHome.xib */,
+				FA39E7C52654F01E006A7602 /* EmptyDataImpian.swift */,
+				FA39E7C62654F01E006A7602 /* EmptyDataImpian.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		FA561CAC264D3A0400CD04E3 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +218,7 @@
 		FA561CB7264D3A0400CD04E3 /* MyMonee-MoneySaver */ = {
 			isa = PBXGroup;
 			children = (
+				FA39E7BA2654DDFF006A7602 /* Component */,
 				FA561D96264F8D2700CD04E3 /* EditProfile */,
 				FA561D8E264F8A2700CD04E3 /* Profile */,
 				FA561D86264EF7C500CD04E3 /* EditHome */,
@@ -307,6 +331,8 @@
 				FA561D56264EC43300CD04E3 /* ImpianData.swift */,
 				FA561DA126503E0E00CD04E3 /* User.swift */,
 				FA561DA62650D8A500CD04E3 /* Common.swift */,
+				FA39E7B52654DD5A006A7602 /* EmptyDataDelegate.swift */,
+				FA39E7CC26553B69006A7602 /* Format.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -513,11 +539,13 @@
 				FA561D9A264F8D4200CD04E3 /* EditProfileViewController.xib in Resources */,
 				FA561D0C264D3B9800CD04E3 /* Poppins-BlackItalic.ttf in Resources */,
 				FA561D0A264D3B9800CD04E3 /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				FA39E7BE2654DE59006A7602 /* EmptyDataHome.xib in Resources */,
 				FA561D06264D3B9800CD04E3 /* Poppins-BoldItalic.ttf in Resources */,
 				FA561D09264D3B9800CD04E3 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				FA561D77264EF0A600CD04E3 /* DetailHomeViewController.xib in Resources */,
 				FA561D0D264D3B9800CD04E3 /* OFL.txt in Resources */,
 				FA561D0E264D3B9800CD04E3 /* Poppins-Regular.ttf in Resources */,
+				FA39E7C82654F01E006A7602 /* EmptyDataImpian.xib in Resources */,
 				FA561D0B264D3B9800CD04E3 /* Poppins-ExtraBold.ttf in Resources */,
 				FA561D08264D3B9800CD04E3 /* Poppins-Medium.ttf in Resources */,
 				FA561CC5264D3A0600CD04E3 /* LaunchScreen.storyboard in Resources */,
@@ -577,11 +605,15 @@
 			files = (
 				FA561D7E264EF58800CD04E3 /* AddHomeViewController.swift in Sources */,
 				FA561CBD264D3A0400CD04E3 /* ViewController.swift in Sources */,
+				FA39E7B62654DD5A006A7602 /* EmptyDataDelegate.swift in Sources */,
 				FA561D6E264EEC9D00CD04E3 /* EditImpianViewController.swift in Sources */,
 				FA561CB9264D3A0400CD04E3 /* AppDelegate.swift in Sources */,
 				FA561D47264E985600CD04E3 /* ImpianViewController.swift in Sources */,
+				FA39E7C72654F01E006A7602 /* EmptyDataImpian.swift in Sources */,
 				FA561D89264EF7F000CD04E3 /* EditHomeViewController.swift in Sources */,
+				FA39E7CD26553B69006A7602 /* Format.swift in Sources */,
 				FA561D31264D800D00CD04E3 /* MainTabController.swift in Sources */,
+				FA39E7BD2654DE59006A7602 /* EmptyDataHome.swift in Sources */,
 				FA561D91264F8A4200CD04E3 /* ProfileViewController.swift in Sources */,
 				FA561DA72650D8A500CD04E3 /* Common.swift in Sources */,
 				FA561D99264F8D4200CD04E3 /* EditProfileViewController.swift in Sources */,
@@ -764,7 +796,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "MyMonee-MoneySaver/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -783,7 +815,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "MyMonee-MoneySaver/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

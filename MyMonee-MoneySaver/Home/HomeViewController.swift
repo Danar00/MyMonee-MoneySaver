@@ -7,8 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EmptyDataDelegate {
     
     @IBOutlet weak var labelName: UILabel!
     
@@ -22,7 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var lastWithdraw: UILabel!
     
-    @IBOutlet weak var emptyDataViewHome: UIView!
+    @IBOutlet weak var emptyDataViewComponent: EmptyDataHome!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +32,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let uiNib = UINib(nibName: String(describing: HomeViewCell.self), bundle: nil)
         tableView.register(uiNib, forCellReuseIdentifier: String(describing: HomeViewCell.self))
         
-        labelBalance.text! = convertIntToFormatMoney(money: Int(getBalance()), isDepoOrWithdraw: nil)
+        labelBalance.text! = currentCurrency()
         lastDeposit.text! = getLastTransactionDeposit()
         lastWithdraw.text! = getLastTransactionWithdraw()
+        
         greetings()
         validateEmptyData()
         
+        emptyDataViewComponent.delegate = self
         
+        
+        if let savedData = UserDefaults.standard.value(forKey: "savedArray") as? Data {
+            let _usageHistory = try? PropertyListDecoder().decode(Array<UsageHistory>.self, from: savedData)
+            usageHistory = _usageHistory ?? []
+
+        }
 
     }
     
@@ -53,7 +60,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.selectionStyle = .none
         cell.titleLabel.text = usageHistory[indexPath.row].usageName
         
-        cell.dateLabel.text = usageHistory[indexPath.row].usageDate
+        cell.dateLabel.text = usageHistory[indexPath.row].formatDate()
         if usageHistory[indexPath.row].status {
             cell.imageStatus.image = UIImage(named: "ic_down")
             cell.priceLabel.text = convertIntToFormatMoney(money: usageHistory[indexPath.row].price, isDepoOrWithdraw: .withdraw)
@@ -67,27 +74,38 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            labelName.text! = user.username
-            
-            navigationController?.setNavigationBarHidden(true, animated: animated)
-        }
+        super.viewWillAppear(animated)
+        labelName.text! = user.username
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
         
     override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
             navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        labelBalance.text! = convertIntToFormatMoney(money: Int(getBalance()), isDepoOrWithdraw: nil)
+        lastDeposit.text! = getLastTransactionDeposit()
+        lastWithdraw.text! = getLastTransactionWithdraw()
+        
+        validateEmptyData()
+        
+        tableView.reloadData()
+        
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailHomeViewController = DetailHomeViewController(nibName: String(describing: DetailHomeViewController.self), bundle: nil)
         
-        detailHomeViewController.hidesBottomBarWhenPushed = true
         let selectedRow = usageHistory[indexPath.row]
         detailHomeViewController.textTitle = selectedRow.usageName
         detailHomeViewController.textId = "\(selectedRow.id)"
         detailHomeViewController.textDate = selectedRow.usageDate
         detailHomeViewController.indexData = indexPath.row
-        
         
         if usageHistory[indexPath.row].status {
             detailHomeViewController.textStatus = "Pengeluaran"
@@ -113,18 +131,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func validateEmptyData(){
         if usageHistory.isEmpty {
             tableView.isHidden = true
-            emptyDataViewHome.isHidden = false
+            emptyDataViewComponent.isHidden = false
         }
         else{
             tableView.isHidden = false
-            emptyDataViewHome.isHidden = true
+            emptyDataViewComponent.isHidden = true
         }
-    }
-    
-    
-    @IBAction func addUsageDataButton(_ sender: Any) {
-        let addHome = AddHomeViewController(nibName: String(describing: AddHomeViewController.self), bundle: nil)
-        navigationController?.pushViewController(addHome, animated: true)
     }
     
     func greetings(){
@@ -152,6 +164,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.greeting.text = greeting
     }
     
-    
+    func add() {
+        let addHome = AddHomeViewController(nibName: String(describing: AddHomeViewController.self), bundle: nil)
+        navigationController?.pushViewController(addHome, animated: true)
+    }
+}
 
+extension HomeViewController: ConvertCurrency {
+    func currentCurrency() -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "Id_ID")
+        formatter.groupingSeparator = "."
+        formatter.numberStyle = .decimal
+        var result: String = ""
+        if let formatterTipAmount = formatter.string(from: getBalance() as NSNumber) {
+            result = "Rp \(formatterTipAmount)"
+        }
+        return result
+    }
 }

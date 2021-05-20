@@ -120,13 +120,13 @@ func moneyToDecimal(money: String) -> Double {
     return number
 }
 
-func getCurrentDate() -> String {
-    let date = Date()
-    let formatter = DateFormatter()
-    formatter.dateFormat = "dd MMMM yyyy - HH.mm"
-    let result = formatter.string(from: date)
-    return result
-}
+//func getCurrentDate() -> String {
+//    let date = Date()
+//    let formatter = DateFormatter()
+//    formatter.dateFormat = "dd MMMM yyyy - HH.mm"
+//    let result = formatter.string(from: date)
+//    return result
+//}
 
 struct Balance {
     var balanceAmount: Double

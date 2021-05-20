@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyDataImpian" customModule="MyMonee_MoneySaver" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="i5M-Pr-FkT" id="tEO-4q-0Tj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="208"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data kamu kosong, Yuk mulai buat Catatan kamu!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzt-oT-nma">
+                    <rect key="frame" x="80" y="79" width="254" height="50.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50.5" id="WJS-6n-yYS"/>
+                        <constraint firstAttribute="width" constant="254" id="YdK-CQ-WUg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0p-Ux-T9C">
+                    <rect key="frame" x="91.5" y="155.5" width="231" height="43"/>
+                    <state key="normal" image="create_impian"/>
+                    <connections>
+                        <action selector="addDataImpian:" destination="-1" eventType="touchUpInside" id="PRG-nO-k4U"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="L0p-Ux-T9C" firstAttribute="top" secondItem="mzt-oT-nma" secondAttribute="bottom" constant="26" id="18N-W7-9YM"/>
+                <constraint firstItem="mzt-oT-nma" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9wl-eE-NcO"/>
+                <constraint firstItem="L0p-Ux-T9C" firstAttribute="centerX" secondItem="mzt-oT-nma" secondAttribute="centerX" id="btl-1y-2ev"/>
+                <constraint firstItem="mzt-oT-nma" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="mzx-B1-5vS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-114.49275362318842" y="-91.071428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="create_impian" width="231" height="43"/>
+    </resources>
+</document>
