@@ -21,13 +21,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var lastWithdraw: UILabel!
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var emptyDataViewComponent: EmptyDataHome!
+    
+        var networkService: NetworkService = NetworkService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        emptyDataViewComponent.delegate = self
         
         let uiNib = UINib(nibName: String(describing: HomeViewCell.self), bundle: nil)
         tableView.register(uiNib, forCellReuseIdentifier: String(describing: HomeViewCell.self))
@@ -36,19 +41,37 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         lastDeposit.text! = getLastTransactionDeposit()
         lastWithdraw.text! = getLastTransactionWithdraw()
         
+        emptyDataViewComponent.isHidden = true
+        
         greetings()
-        validateEmptyData()
-        
-        emptyDataViewComponent.delegate = self
+//        validateEmptyData()
         
         
-        if let savedData = UserDefaults.standard.value(forKey: "savedArray") as? Data {
-            let _usageHistory = try? PropertyListDecoder().decode(Array<UsageHistory>.self, from: savedData)
-            usageHistory = _usageHistory ?? []
-
-        }
+        
+        loadData()
+        
+        //Utk presisten data
+//        if let savedData = UserDefaults.standard.value(forKey: "savedArray") as? Data {
+//            let _usageHistory = try? PropertyListDecoder().decode(Array<UsageHistory>.self, from: savedData)
+//            usageHistory = _usageHistory ?? []
+//        }
 
     }
+    func loadData() {
+        networkService.loadTransactionList { (UsageHistory) in
+            DispatchQueue.main.async {
+                self.loadingIndicator.startAnimating()
+                usageHistory = UsageHistory
+                self.tableView.reloadData()
+                self.labelBalance.text! = self.currentCurrency()
+                self.lastDeposit.text! = getLastTransactionDeposit()
+                self.lastWithdraw.text! = getLastTransactionWithdraw()
+                self.validateEmptyData()
+                self.loadingIndicator.stopAnimating()
+            }
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return usageHistory.count
@@ -76,26 +99,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         labelName.text! = user.username
-        
+//        loadData()
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
         
     override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        labelBalance.text! = convertIntToFormatMoney(money: Int(getBalance()), isDepoOrWithdraw: nil)
-        lastDeposit.text! = getLastTransactionDeposit()
-        lastWithdraw.text! = getLastTransactionWithdraw()
-        
-        validateEmptyData()
-        
-        tableView.reloadData()
-        
+//        labelBalance.text! = convertIntToFormatMoney(money: Int(getBalance()), isDepoOrWithdraw: nil)
+//        lastDeposit.text! = getLastTransactionDeposit()
+//        lastWithdraw.text! = getLastTransactionWithdraw()
+//        validateEmptyData()
+        loadData()
+//        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -183,3 +203,5 @@ extension HomeViewController: ConvertCurrency {
         return result
     }
 }
+
+

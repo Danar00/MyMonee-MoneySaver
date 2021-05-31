@@ -12,12 +12,21 @@ enum TypeHistory: String {
     case withdraw
 }
 
-struct UsageHistory: Encodable, Decodable {
+struct UsageHistory: Codable {
     var id: String
     var usageName: String
     var usageDate: String
     var price: Int
     var status: Bool
+    
+    enum CodingKeys: String, CodingKey  {
+        case id
+        case usageName = "usage_name"
+        case usageDate = "usage_date"
+        case price
+        case status
+    }
+    
     
     init(usageName: String, usageDate: String, price: Int, status: Bool) {
         self.id = String(UUID.init().uuidString.prefix(6)).uppercased()
@@ -50,6 +59,9 @@ extension UsageHistory {
         return result
     }
 }
+
+
+
 
 var usageHistory: [UsageHistory] = [
 //    UsageHistory(usageName: "Bayar Listrik", usageDate: "1 Mei 2021 - 19.30", price: 256000, status: true),

@@ -20,7 +20,7 @@ protocol noticed {
 func getBalance() -> Double {
     var result:Double = balance.balanceAmount
     for value in usageHistory {
-        switch value.status{
+        switch value.status {
         case true:
             result -= Double(value.price)
         case false:

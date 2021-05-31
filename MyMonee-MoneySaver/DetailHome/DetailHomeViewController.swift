@@ -57,9 +57,12 @@ class DetailHomeViewController: UIViewController {
         editHome.textTitle = textTitle
         editHome.textPrice = textPrice
         editHome.indexData = indexData
+        editHome.id = textId
         
         navigationController?.pushViewController(editHome, animated: true)
         
     }
+    
+    
     
 }

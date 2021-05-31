@@ -67,7 +67,11 @@ class AddHomeViewController: UIViewController {
         let viewController = HomeViewController(nibName: String(describing: HomeViewController.self), bundle: nil)
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .flipHorizontal
-        navigationController?.pushViewController(viewController, animated: true)
+        self.showToast(message: "Data Berhasil Di input", font: .systemFont(ofSize: 12.0))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {             self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        
+        
 //        self.present(viewController, animated: true, completion: nil)
     }
     
@@ -78,10 +82,65 @@ class AddHomeViewController: UIViewController {
         
     }
     
+    
+    
     fileprivate func insertUsageHistory(type: TypeHistory){
-        usageHistory.append(UsageHistory(usageName: titleLabel.text!, usageDate: currentDate(), price: Int(priceLabel.text!)!, status: statusInsert))
+//        usageHistory.append(UsageHistory(usageName: titleLabel.text!, usageDate: currentDate(), price: Int(priceLabel.text!)!, status: statusInsert))
+//
+//        UserDefaults.standard.set(try? PropertyListEncoder().encode(usageHistory), forKey: "savedArray")
         
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(usageHistory), forKey: "savedArray")
+        guard let url = URL(string: "https://60a5fb0ac0c1fd00175f4d86.mockapi.io/api/v1/transaction") else {
+            print("Error: cannot create URL")
+            return
+        }
+        
+        let uploadDataModel = UsageHistory(usageName: titleLabel.text!, usageDate: currentDate(), price: Int(priceLabel.text!)!, status: statusInsert)
+        
+        guard let jsonData = try? JSONEncoder().encode(uploadDataModel) else {
+                    print("Error: Trying to convert model to JSON data")
+                    return
+                }
+                // Create the url request
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is JSON
+                request.setValue("application/json", forHTTPHeaderField: "Accept") // the response expected to be in JSON format
+                request.httpBody = jsonData
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard error == nil else {
+                        print("Error: error calling POST")
+                        print(error!)
+                        return
+                    }
+                    guard let data = data else {
+                        print("Error: Did not receive data")
+                        return
+                    }
+                    guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                        print("Error: HTTP request failed")
+                        return
+                    }
+                    do {
+                        guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                            print("Error: Cannot convert data to JSON object")
+                            return
+                        }
+                        guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                            print("Error: Cannot convert JSON object to Pretty JSON data")
+                            return
+                        }
+                        guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                            print("Error: Couldn't print JSON in String")
+                            return
+                        }
+                        
+                        print(prettyPrintedJson)
+                    } catch {
+                        print("Error: Trying to convert JSON data to string")
+                        return
+                    }
+                }.resume()
+        
     }
         
     override func viewDidLoad() {
@@ -103,6 +162,25 @@ class AddHomeViewController: UIViewController {
     @IBAction func backHomeButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
+    func showToast(message : String, font: UIFont) {
+
+           let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height/2, width: 150, height: 35))
+           toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+           toastLabel.textColor = UIColor.white
+           toastLabel.font = font
+           toastLabel.textAlignment = .center;
+           toastLabel.text = message
+           toastLabel.alpha = 1.0
+           toastLabel.layer.cornerRadius = 10;
+           toastLabel.clipsToBounds  =  true
+           self.view.addSubview(toastLabel)
+           UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+                toastLabel.alpha = 0.0
+           }, completion: {(isCompleted) in
+               toastLabel.removeFromSuperview()
+           })
+       }
     
     @IBAction func saveButton(_ sender: Any) {
         if titleLabel.text!.isEmpty || priceLabel.text!.isEmpty || statusPemasukan == false && statusPenarikan == false {
@@ -130,4 +208,5 @@ extension AddHomeViewController: ConvertDate {
         let result = formatter.string(from: date)
         return result
     }
+    
 }
