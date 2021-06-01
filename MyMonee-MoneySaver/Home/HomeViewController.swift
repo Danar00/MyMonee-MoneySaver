@@ -166,19 +166,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let hourInt = Int(currentHour.description)!
         var greeting = ""
         
-        if hourInt >= 12 && hourInt <= 16 {
+        if hourInt >= 10 && hourInt <= 15 {
             greeting = "Selamat Siang,"
         }
-        else if hourInt >= 7 && hourInt <= 12 {
-            greeting = "Selamat Pagi,"
+        else if hourInt >= 6 && hourInt <= 10 {
+            greeting = "Good Morning,"
         }
-        else if hourInt >= 16 && hourInt <= 20 {
+        else if hourInt >= 15 && hourInt <= 20 {
             greeting = "Selamat Sore,"
         }
         else if hourInt >= 20 && hourInt <= 24 {
             greeting = "Selamat Malam,"
         }
-        else if hourInt >= 0 && hourInt <= 7 {
+        else if hourInt >= 0 && hourInt <= 6 {
             greeting = "You should be sleeping right now"
         }
         self.greeting.text = greeting
