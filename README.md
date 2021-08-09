@@ -29,7 +29,7 @@ Apllication that will keep you on track when using your money
 #### Clone Git or Download Git
 
 ```Clone Git from your terminal
-git clone https://gitlab.com/danarhikmah/mymonee-moneysaver.git
+git clone https://github.com/Danar00/MyMonee-MoneySaver.git
 ```
 
 #### CocoaPods
